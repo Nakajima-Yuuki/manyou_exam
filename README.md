@@ -1,25 +1,26 @@
-# README
+# このアプリについて
+## データベース
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### user
+| カラム名 | データ型  |
+|  ----   | ---- |
+|  name |  string  |
+|  email_address  |  string  |
+|  password | string |
 
-Things you may want to cover:
+### task
+| カラム名 | データ型 |
+| ---- | ---- |
+|name | string |
+|description | text |
+|priority | string |
+|status | string |
+|expiration_date | datetime |
+|user_id | integer |
+|task_label_id | integer |
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# manyou_exam
+### label
+| カラム名 | データ型 |
+| ---- |  ----  |
+| task_id | integer |
+| label_name | string |
