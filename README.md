@@ -93,5 +93,3 @@ $ git push heroku master
 
 ```sh
 $ heroku run rails db:migrate
-
-```
