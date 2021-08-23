@@ -6,7 +6,7 @@
     <th>内容</th>
   </tr>
 <% @tasks.each do |task| %>
-  <tr>
+  <tr class='task_row'>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
     <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
