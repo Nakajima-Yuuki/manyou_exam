@@ -14,9 +14,10 @@ RSpec.describe 'タスク管理機能', type: :system do
       visit tasks_path #タスクページへ行く
       # visitした（遷移した）page（タスク一覧ページ）に「task」という文字列が
       # have_contentされているか（含まれているか）ということをexpectする（確認・期待する）
-      click_on '新規投稿'
       expect(page).to have_content 'test_name1'
       expect(page).to have_content 'タスク一覧'
+      click_on '新規投稿'
+      click_on '登録する'
       # わざと間違った結果を期待するテストを記載する
       #expect(page).to have_content 'task_failure'
       # expectの結果が true ならテスト成功、false なら失敗として結果が出力される
@@ -35,6 +36,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       expect(page).to have_content 'test_name2'
       expect(page).to have_content 'test_description1'
       expect(page).to have_content 'test_description2'
+      click_on '終了期限でソートする'
     end
     end
   end
@@ -60,10 +62,10 @@ RSpec.describe 'タスク管理機能', type: :system do
         task = FactoryBot.create(:task)
         task = FactoryBot.create(:second_task)
           visit tasks_path #タスクページへ行く
-          binding.irb
           task_list = all('.task_row') 
           expect(task_list[0]).to have_content 'test_description2'
           expect(task_list[1]).to have_content 'test_description1'
-       end
+          click_on '終了期限でソートする'
+        end
     end
 end

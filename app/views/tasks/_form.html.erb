@@ -16,6 +16,8 @@
     <%= form.text_area :description %><br>
     <%= form.label :expiration_date %><br>
     <%= form.datetime_select :expiration_date %><br>
+    <%= form.label :status %><br>
+    <%= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択して下さい" %><br>
     <br>
   </div>
     <%= form.submit %>

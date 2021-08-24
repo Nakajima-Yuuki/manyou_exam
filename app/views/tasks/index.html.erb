@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 <h1>タスク一覧</h1>
+<%= form_with(model: @task, method: :get, local: true, ) do |form| %>
+  <%= form.label :'タスク名' %>
+  <%= form.text_field :search_name %>
+  <%= form.label :'ステータス' %>
+  <%= form.select :search_status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択して下さい" %>
+  <%= form.submit '検索' , name: 'search' %>
+<% end %>
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <table border='3'>
  <thead>
@@ -7,6 +14,7 @@
     <th>タスク名</th>
     <th>内容</th>
     <th>終了期限</th>
+    <th>ステータス</th>
   </tr>
   </thead>
 <hr>
@@ -15,6 +23,7 @@
     <td><%= task.name %></td>
     <td><%= task.description %></td>
     <td class="expiration_date"><%= l(task.expiration_date, format: :long) %></td>
+    <td class="status"><%= task.status %></td>
     <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
     <td><%= link_to "タスクを編集する", edit_task_path(task.id) %></td>
     <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }%></td>
