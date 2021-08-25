@@ -1,10 +1,23 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   def index
-    @tasks = Task.all.order(created_at: :desc)
     if params[:sort_expired]
       @tasks = Task.all.order(expiration_date: :desc)
+    elsif
+      @tasks = Task.all.order(created_at: :desc)
     end
+    
+      #もし渡されたパラメータがタイトルとステータス両方だったとき
+      if params[:name].present? && params[:status].present?
+        @tasks = Task.search_name(params[:name]).search_status(params[:status])
+      #もし渡されたパラメータがタイトルのみだったとき
+      elsif params[:name].present? 
+        @tasks = Task.search_name(params[:name])
+      #もし渡されたパラメータがステータスのみだったとき
+      elsif params[:status].present? 
+        @tasks = Task.search_status(params[:status])
+    end
+
   end
 
   def show
@@ -50,7 +63,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-  params.require(:task).permit(:name, :description, :expiration_date, :status)
+  params.require(:task).permit(:name, :description, :expiration_date, :status, :priority,)
   end
 
   def set_task
