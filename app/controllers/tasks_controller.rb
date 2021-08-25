@@ -3,21 +3,22 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired]
       @tasks = Task.all.order(expiration_date: :desc)
-    elsif
+    elsif params[:sort_priority]
+      @tasks = Task.order(priority: :desc)
+    elsif  
       @tasks = Task.all.order(created_at: :desc)
     end
     
       #もし渡されたパラメータがタイトルとステータス両方だったとき
-      if params[:name].present? && params[:status].present?
-        @tasks = Task.search_name(params[:name]).search_status(params[:status])
+    if params[:name].present? && params[:status].present?
+      @tasks = Task.search_name(params[:name]).search_status(params[:status])
       #もし渡されたパラメータがタイトルのみだったとき
-      elsif params[:name].present? 
-        @tasks = Task.search_name(params[:name])
+    elsif params[:name].present? 
+      @tasks = Task.search_name(params[:name])
       #もし渡されたパラメータがステータスのみだったとき
-      elsif params[:status].present? 
-        @tasks = Task.search_status(params[:status])
+    elsif params[:status].present? 
+      @tasks = Task.search_status(params[:status])
     end
-
   end
 
   def show
