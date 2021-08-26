@@ -2,22 +2,22 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(expiration_date: :desc)
+      @tasks = Task.all.order(expiration_date: :desc).page(params[:page]).per(20)
     elsif params[:sort_priority]
-      @tasks = Task.order(priority: :desc)
+      @tasks = Task.order(priority: :desc).page(params[:page]).per(20)
     elsif  
-      @tasks = Task.all.order(created_at: :desc)
+      @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(20)
     end
     
       #もし渡されたパラメータがタイトルとステータス両方だったとき
     if params[:name].present? && params[:status].present?
-      @tasks = Task.search_name(params[:name]).search_status(params[:status])
+      @tasks = Task.search_name(params[:name]).search_status(params[:status]).page(params[:page]).per(20)
       #もし渡されたパラメータがタイトルのみだったとき
     elsif params[:name].present? 
-      @tasks = Task.search_name(params[:name])
+      @tasks = Task.search_name(params[:name]).page(params[:page]).per(20)
       #もし渡されたパラメータがステータスのみだったとき
     elsif params[:status].present? 
-      @tasks = Task.search_status(params[:status])
+      @tasks = Task.search_status(params[:status]).page(params[:page]).per(20)
     end
   end
 
