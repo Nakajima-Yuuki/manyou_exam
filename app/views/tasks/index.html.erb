@@ -9,7 +9,7 @@
 <% end %>
 <th><%= link_to "終了期限でソート▼", tasks_path(sort_expired: "true") %></th>
 <th><%= link_to "優先順位▼",tasks_path(sort_priority: "true") %></th>
-<table border='3'>
+<table border='1'>
   <tr>
     <th>タスク名</th>
     <th>内容</th>
@@ -25,9 +25,9 @@
     <td class="expiration_date"><%= l(task.expiration_date, format: :long) %></td>
     <td class="status"><%= task.status %></td>
     <td class="priority"><%= task.priority %></td>
-    <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
-    <td><%= link_to "タスクを編集する", edit_task_path(task.id) %></td>
-    <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }%></td>
+    <td><%= link_to '詳細を確認する', task_path(task.id), class:"btn btn-primary btn-xs"%></td>
+    <td><%= link_to "タスクを編集する", edit_task_path(task.id), class:"btn btn-success btn-xs" %></td>
+    <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class:"btn btn-danger btn-xs"%></td>
   </tr>
 <% end %>
 </table>

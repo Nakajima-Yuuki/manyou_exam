@@ -19,7 +19,7 @@
     <%= form.label :status %><br>
     <%= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択して下さい" %><br>
     <%= form.label :priority %><br>
-    <%= form.select :priority, [["3","3"], ["2","2"], ["1","1"]], include_blank: "選択して下さい" %><br>
+    <%= form.select :priority, [["高","高"], ["中","中"], ["低","低"]], include_blank: "選択して下さい" %><br>
     <br>
   </div>
     <%= form.submit %>

@@ -5,4 +5,5 @@ class Task < ApplicationRecord
     scope :priority, -> { order(priority: :asc) }
     scope :search_name, -> (name){where("name LIKE?","%#{name}%" )}
     scope :search_status, -> (status){where("status LIKE?","%#{status}%")}
+    enum priority: [:高, :中, :低]
 end
