@@ -1,2 +1,15 @@
 //= require_tree .
 @import "bootstrap";
+
+body {
+    background-color: #FBF6F0;
+    color: #333;
+    margin: 33px;
+    /* font-family: verdana, arial, helvetica, sans-serif; */
+    font-family: "ヒラギノ丸ゴ ProN W4", sans-serif;
+    /* font-family: "筑紫B丸ゴシック", sans-serif; */
+    font-size: 13px;
+    line-height: 18px;
+    min-height: 100%
+  }
+

@@ -3,6 +3,10 @@ FactoryBot.define do
       # 下記の内容は実際に作成するカラム名に合わせて変更してください
       name { 'test_name1' }
       description { 'test_description1' }
+      expiration_date {'2021/08/27 15:46'}
+      status{ '未着手' }
+      priority {'中'}
+
     end
     
     factory :second_task, class: Task do
@@ -10,5 +14,8 @@ FactoryBot.define do
     #（存在しないクラス名の名前をつける場合、オプションで「このクラスのテストデータにしてください」と指定します）
     name { 'test_name2' }
     description { 'test_description2' }
+    expiration_date {'2021/08/20 15:46'}
+    status{ '着手中' }
+    priority {'中'}
     end
 end

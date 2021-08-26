@@ -1,18 +1,35 @@
 <p id="notice"><%= notice %></p>
 <h1>タスク一覧</h1>
-<table>
+<%= form_with(model: @task, method: :get, local: true, ) do |form| %>
+  <%= form.label :'タスク名' %>
+  <%= form.text_field :name  %>
+  <%= form.label :'ステータス' %>
+  <%= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択して下さい" %>
+  <%= form.submit '検索' , name: 'search' %>
+<% end %>
+<hr>
+<button type="button" class="btn btn-warning"><%= link_to "新規投稿",new_task_path %></button>
+<table class="table table-bordered">
   <tr>
     <th>タスク名</th>
     <th>内容</th>
+    <th><%= link_to "終了期限でソート▼", tasks_path(sort_expired: "true") %></th>
+    <th>ステータス</th>
+    <th><%= link_to "優先順位▼",tasks_path(sort_priority: "true") %></th>
   </tr>
+<hr>
 <% @tasks.each do |task| %>
   <tr class='task_row'>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
-    <td><%= link_to '詳細を確認する', task_path(task.id) %></td>
-    <td><%= link_to "タスクを編集する", edit_task_path(task.id) %></td>
-    <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }%></td>
+    <td class="expiration_date"><%= l(task.expiration_date, format: :long) %></td>
+    <td class="status"><%= task.status %></td>
+    <td class="priority"><%= task.priority %></td>
+    <td><%= link_to '詳細を確認する', task_path(task.id), class:"btn btn-primary btn-xs"%></td>
+    <td><%= link_to "タスクを編集する", edit_task_path(task.id), class:"btn btn-success btn-xs" %></td>
+    <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class:"btn btn-danger btn-xs"%></td>
   </tr>
 <% end %>
 </table>
-<h4><%= link_to "新規投稿",new_task_path %></h4>
+<br>
+
