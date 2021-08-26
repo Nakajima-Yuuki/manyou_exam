@@ -7,15 +7,15 @@
   <%= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択して下さい" %>
   <%= form.submit '検索' , name: 'search' %>
 <% end %>
-<th><%= link_to "終了期限でソート▼", tasks_path(sort_expired: "true") %></th>
-<th><%= link_to "優先順位▼",tasks_path(sort_priority: "true") %></th>
-<table border='1'>
+<hr>
+<button type="button" class="btn btn-warning"><%= link_to "新規投稿",new_task_path %></button>
+<table class="table table-bordered">
   <tr>
     <th>タスク名</th>
     <th>内容</th>
-    <th>終了期限</th>
+    <th><%= link_to "終了期限でソート▼", tasks_path(sort_expired: "true") %></th>
     <th>ステータス</th>
-    <th>優先順位</th>
+    <th><%= link_to "優先順位▼",tasks_path(sort_priority: "true") %></th>
   </tr>
 <hr>
 <% @tasks.each do |task| %>
@@ -32,4 +32,4 @@
 <% end %>
 </table>
 <br>
-<h4><%= link_to "新規投稿",new_task_path %></h4>
+
