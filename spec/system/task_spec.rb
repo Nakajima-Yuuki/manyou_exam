@@ -16,8 +16,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       # have_contentされているか（含まれているか）ということをexpectする（確認・期待する）
       expect(page).to have_content 'test_name1'
       expect(page).to have_content 'タスク一覧'
-      click_on '新規投稿'
-      click_on '登録する'
+      click_on '検索'
+
       # わざと間違った結果を期待するテストを記載する
       #expect(page).to have_content 'task_failure'
       # expectの結果が true ならテスト成功、false なら失敗として結果が出力される

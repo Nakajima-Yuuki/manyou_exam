@@ -23,9 +23,9 @@ describe 'タスクモデル機能', type: :model do
     end
   end
         # 必要に応じて、テストデータの内容を変更して構わない
-  describe '検索機能' do    
-    let!(:task) { FactoryBot.create(:task, name:'task') }
-    let!(:second_task) { FactoryBot.create(:second_task, name:'sample') }
+  describe '検索機能' do   
+    let!(:task) { FactoryBot.create(:task, name:'task',status: '未着手', priority: '中') }
+    let!(:second_task) { FactoryBot.create(:second_task, name:'sample',status: '着手中', priority: '中') }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
             # title_seachはscopeで提示したタイトル検索用メソッドである。メソッド名は任意で構わない。
