@@ -11,6 +11,7 @@
 <button type="button" class="btn btn-warning"><%= link_to "新規投稿",new_task_path %></button>
 <table class="table table-bordered">
   <tr>
+    <th>ユーザー名</th>
     <th>タスク名</th>
     <th>内容</th>
     <th><%= link_to "終了期限でソート▼", tasks_path(sort_expired: "true") %></th>
@@ -20,6 +21,7 @@
 <hr>
 <% @tasks.each do |task| %>
   <tr class='task_row'>
+    <td><%= task.user.full_name %></td>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
     <td class="expiration_date"><%= l(task.expiration_date, format: :long) %></td>
