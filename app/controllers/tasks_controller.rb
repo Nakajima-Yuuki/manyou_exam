@@ -34,10 +34,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:notice]="タスクを作成しました！"
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "新しいタスクを作成しました！"
     else
       render :new
     end
@@ -64,7 +63,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-  params.require(:task).permit(:name, :description, :expiration_date, :status, :priority,)
+  params.require(:task).permit(:name, :description, :expiration_date, :status, :priority,:user,)
   end
 
   def set_task
