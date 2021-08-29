@@ -39,6 +39,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @task = @user.tasks
   end
+
+  def destroy
+    if @user.destroy
+      redirect_to new_user_path, notice: "ユーザーを削除しました！"
+    end
+  end
  
   private
     def user_params
