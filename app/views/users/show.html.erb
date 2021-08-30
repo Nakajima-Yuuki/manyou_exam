@@ -7,6 +7,10 @@
   <strong>メールアドレス：</strong>
   <%= @user.email %>
 </p>
+<p>
+<strong>管理者権限：</strong>
+<%= @user.admin == true ? 'あり' : 'なし' %>
+</p>
 <%= link_to 'ユーザー情報編集', edit_user_path(@user) %>
 <hr>
 
