@@ -2,23 +2,16 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   before_action :other_user, only: [ :show, :edit, :update, :destroy ]
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]
+  
   def new
     @user = User.new
-  end
-      
-  def create
-    @user = User.new(user_params)
-     if @user.save
-    # 保存の成功した場合の処理
-     else
-    render :new
-    end
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user.id)
+      session[:user_id] = @user.id
+      redirect_to user_path(current_user.id)
     else
        render :new
     end
@@ -43,6 +36,8 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       redirect_to new_user_path, notice: "ユーザーを削除しました！"
+    else
+      redirect_to admin_user_path, notice: "管理者がいなくなる為削除できません"
     end
   end
  

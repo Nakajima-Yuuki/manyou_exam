@@ -1,5 +1,5 @@
-<h1>新規登録画面</h1>
-<%= form_with(model: @user, local: true) do |form| %>
+<h2>ユーザー情報編集</h2>
+<%= form_with(model: [:admin, @user], local: true) do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= @user.errors.count %> 件のエラーがあります。</h2>
@@ -25,7 +25,7 @@
   </div>
   <div>
     <%= form.label :password_confirmation %><br>
-    <%= form.password_field :password_confirmation %><br><br>
+    <%= form.password_field :password_confirmation %><br>
   </div>
   <div>
     <%= form.check_box :admin,{}, "true","false" %>
@@ -35,3 +35,4 @@
     <p><%= form.submit "登録する"%></p>
   </div>
 <% end %>
+<%= link_to '管理画面へ戻る', admin_users_path %>
