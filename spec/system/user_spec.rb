@@ -43,7 +43,6 @@ RSpec.describe 'ユーザー登録のテスト', type: :system do
               fill_in 'session[email]', with: 'user11@example.com'
               fill_in 'session[password]', with: 'password'
               click_on 'ログイン'
-              binding.irb
               click_on '詳細'
               
       
