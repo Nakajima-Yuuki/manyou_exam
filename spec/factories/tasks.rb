@@ -5,8 +5,8 @@ FactoryBot.define do
       description { 'test_description1' }
       expiration_date {'2021/08/27 15:46'}
       status{ '未着手' }
-      priority {'中'}
-
+      priority {'高'}
+      association :user
     end
     
     factory :second_task, class: Task do
@@ -16,6 +16,7 @@ FactoryBot.define do
     description { 'test_description2' }
     expiration_date {'2021/08/20 15:46'}
     status{ '着手中' }
-    priority {'中'}
+    priority {'低'}
+    association :user
     end
 end
