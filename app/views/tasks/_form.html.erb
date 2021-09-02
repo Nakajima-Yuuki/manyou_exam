@@ -24,10 +24,10 @@
     <%= form.select :priority, [["高","高"], ["中","中"], ["低","低"]], include_blank: "選択して下さい" %><br>
   </div>
   <div>
-    <% Labels.all.each do |label| %>
-  <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-  <%= label.label_name %>
-<% end %>
+  <% Label.all.each do |label| %>
+    <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+    <%= form.label :label_ids, label.label_name, class:"label-bg", value: label[:id]%>
+    <% end %>
   </div>
     <br>
   </div>

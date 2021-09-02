@@ -30,8 +30,7 @@
     <td class="priority"><%= task.priority %></td>
     <td>
     <% task.labels.each do |label| %>
-    <%= label.name %>
-    </td>
+    <%= label.label_name %>
     <% end %>
     </td>
     <td><%= link_to '詳細を確認する', task_path(task.id), class:"btn btn-primary btn-xs"%></td>
@@ -40,6 +39,6 @@
     <td><%= link_to 'タスクを削除する', task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class:"btn btn-danger btn-xs"%></td>
    </tr>
 <% end %>
-</table>
 <% end %>
+</table>
 
