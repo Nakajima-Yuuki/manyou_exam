@@ -3,4 +3,10 @@
 <p>内容: <%= @task.description %></p>
 <p>作成日時: <%= l(@task.created_at, format: :long) %></p>
 <p>終了期限: <%= l(@task.expiration_date, format: :long) %></p>
+<p>
+  <strong>ラベル:</strong>
+  <% @task.labels.each do |label| %>
+    <%= label.label_name %>
+  <% end %>
+</p>
 <%= link_to '戻る', tasks_path %>
