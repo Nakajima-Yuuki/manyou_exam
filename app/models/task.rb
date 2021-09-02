@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
     belongs_to :user
+    has_many :labellings, dependent: :destroy
+    has_many :labels, through: :labellings, source: :label
     validates :name, presence: true
     validates :description, presence: true, length: { maximum: 500 }
     scope :expired, -> { order(expiration_date: :desc) }
