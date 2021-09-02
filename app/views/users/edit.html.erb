@@ -1,0 +1,34 @@
+<h1>ユーザー情報編集画面</h1>
+<%= form_with(model: @user, local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %> 件のエラーがあります。</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :full_name %><br>
+    <%= form.text_field :full_name %>
+  </div>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.label :password_confirmation %><br>
+    <%= form.password_field :password_confirmation %><br><br>
+  </div>
+  <div>
+    <p><%= form.submit "登録する"%></p>
+  </div>
+<% end %>
+<%= link_to 'プロフィール画面へ戻る', user_path(current_user.id) %>

@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(expiration_date: :desc).page(params[:page]).per(20)
+      @tasks = current_user.tasks.order(expiration_date: :desc).page(params[:page]).per(20)
     elsif params[:sort_priority]
-      @tasks = Task.order(priority: :desc).page(params[:page]).per(20)
+      @tasks = current_user.tasks.order(priority: :desc).page(params[:page]).per(20)
     elsif  
       @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(20)
     end
@@ -34,10 +35,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:notice]="タスクを作成しました！"
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "新しいタスクを作成しました！"
     else
       render :new
     end
@@ -59,12 +59,13 @@ class TasksController < ApplicationController
   end 
 
   def confirm
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
+    render :new if @task.invalid?
   end
 
   private
   def task_params
-  params.require(:task).permit(:name, :description, :expiration_date, :status, :priority,)
+  params.require(:task).permit(:name, :description, :expiration_date, :status, :priority,:user,)
   end
 
   def set_task

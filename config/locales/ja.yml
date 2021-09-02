@@ -6,6 +6,7 @@ ja:
     attributes:
       task:
         id: "ID"
+        full_name: "名前"
         name: "タスク名"
         description: "内容"
         created_at: "作成日時"
