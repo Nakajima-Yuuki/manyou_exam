@@ -26,6 +26,7 @@
     <th><%= link_to "終了期限でソート▼", tasks_path(sort_expired: "true") %></th>
     <th>ステータス</th>
     <th><%= link_to "優先順位▼",tasks_path(sort_priority: "true") %></th>
+    <th>ラベル</th>
   </tr>
   <hr>
   <% current_user.tasks.each do |task| %>
@@ -37,10 +38,13 @@
       <td class="status"><%= task.status %></td>
       <td class="priority"><%= task.priority %></td>
       <td>
+      <% task.labels.each do |label| %>
+      <%= label.label_name %>
+      <% end %>
       </td>
-      <td><%= link_to '詳細', task_path(task.id), class:"btn btn-primary btn-xs" %></td>
-      <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-success btn-xs" %></td>
-      <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class:"btn btn-danger btn-xs" %></td>
+      <td><%= link_to '詳細確認', task_path(task.id), class:"btn btn-primary btn-xs" %></td>
+      <td><%= link_to "編集する", edit_task_path(task.id), class:"btn btn-success btn-xs" %></td>
+      <td><%= link_to '削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class:"btn btn-danger btn-xs" %></td>
     </tr>
   <% end %>
 </table>
